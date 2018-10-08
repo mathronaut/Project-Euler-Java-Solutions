@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("total:"+ sumMultipleNumbers(100, 3, 5));
+        sumMultipleNumbers(100, 3, 5);
     }
 
     public static int sumMultipleNumbers(int limit, int multiple1, int multiple2) {
@@ -8,9 +8,9 @@ public class Main {
         for (int i = 0; i < limit; i++) {
             if (i % multiple1 == 0 || i % multiple2 == 0) {
                 sum += i;
-                System.out.println(i);
             }
         }
+        System.out.println("Sum of (" + multiple1 + " & " + multiple2 + ") multiples up to " + limit + " is " + sum);
         return sum;
     }
 }

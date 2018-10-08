@@ -1,0 +1,30 @@
+public class Main {
+
+    public static void main(String[] args) {
+        smallestMultiple(1, 20);
+    }
+
+    public static int smallestMultiple(int lower, int upper) {
+        int total = 1;
+        for (int i = lower; i <= upper; i++) {
+            int number = upper;
+            if (isPrime(i)) {
+                while (number > i - 1) {
+                    number /= i;
+                    total *= i;
+                }
+            }
+        }
+        System.out.println("Smallest multiple of numbers between " + lower + "-" + upper + " is " + total);
+        return total;
+    }
+
+    public static boolean isPrime(int number){
+        if (number < 2) return false;
+        if (number == 2) return true;
+        if (number % 2 == 0) return false;
+        for (int i = 3; i * i <= number; i += 2)
+            if (number % i == 0) return false;
+        return true;
+    }
+}

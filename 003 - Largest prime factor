@@ -1,0 +1,21 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        largestPrimeFactor(600851475143L);
+    }
+
+    public static long largestPrimeFactor(long number){
+        long temp = number;
+        //Creating temp variable for saving number variable in order of other usage
+        //e.g. bottom println command
+        for (long i = 2; i < temp - 1; i++) {
+            while (temp % i == 0) {
+                temp /= i;
+            }
+        }
+        System.out.println("Largest prime factor of " + number + " is "+ temp);
+        return number;
+    }
+}

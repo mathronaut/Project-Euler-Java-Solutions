@@ -1,7 +1,11 @@
 public class Main {
     public static void main(String[] args) {
+        sumEvenFibo(4_000_000);
+    }
+
+    public static void sumEvenFibo(int limit) {
         int sum = 0, temp = 1;
-        for (int i = 1; temp < 4_000_000; i += temp) {
+        for (int i = 1; temp < limit; i += temp) {
             if (i % 2 == 0) {
                 sum += i;
             }
@@ -9,9 +13,7 @@ public class Main {
                 sum += temp;
             }
             temp += i;
-            System.out.println(i);
-            System.out.println(temp);
         }
-        System.out.println(sum);
+        System.out.println("Sum of even Fibonacci numbers up to " + limit + " is " + sum);
     }
 }

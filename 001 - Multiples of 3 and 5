@@ -1,0 +1,16 @@
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("total:"+ sumMultipleNumbers(100, 3, 5));
+    }
+
+    public static int sumMultipleNumbers(int limit, int multiple1, int multiple2) {
+        int sum = 0;
+        for (int i = 0; i < limit; i++) {
+            if (i % multiple1 == 0 || i % multiple2 == 0) {
+                sum += i;
+                System.out.println(i);
+            }
+        }
+        return sum;
+    }
+}

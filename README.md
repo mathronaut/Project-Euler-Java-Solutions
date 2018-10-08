@@ -2,7 +2,7 @@ Hi,
 
 My name is Esen, a junior Android Developer who started at 2018 September in result of career change from Mechanical Engineering.
 
-This is my Project Euler solutions written in ***Java.
+This is my Project Euler solutions written in ***Java.***
 
 Purpose of this project is creating best solutions possible while keeping codes ***simple, re-usable and easy to implementation.***
 

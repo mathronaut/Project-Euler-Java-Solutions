@@ -1,0 +1,35 @@
+package com.mathronaut;
+
+public class Main {
+
+    public static void main(String[] args) {
+        largestPalindrome(3);
+    }
+
+    public static void largestPalindrome(int digits){
+        int number = 0;
+        for (int i = (int) (Math.pow(10, digits) - 1); i > (int) (Math.pow(10, digits - 1)); i--) {
+            for (int j = (int) (Math.pow(10, digits) - 1); j > (int) (Math.pow(10, digits - 1)); j--) {
+                if (i * j > number && isPalindrome(i * j)) {
+                    number = i * j;
+                }
+            }
+        }
+        System.out.println("Largest Palindrome created from " + digits + "-digit number is " + number);
+    }
+
+    public static boolean isPalindrome (int number){
+        int reverse = 0;
+        int temp = number;
+        while (temp > 0) {
+            reverse *= 10;
+            int digit = temp % 10;
+            temp /= 10;
+            reverse += digit;
+        }
+        if (reverse == number){
+            return true;
+        }
+        return false;
+    }
+}

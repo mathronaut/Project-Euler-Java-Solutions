@@ -1,0 +1,17 @@
+public class Main {
+    public static void main(String[] args) {
+        int sum = 0, temp = 1;
+        for (int i = 1; temp < 4_000_000; i += temp) {
+            if (i % 2 == 0) {
+                sum += i;
+            }
+            if (temp % 2 == 0) {
+                sum += temp;
+            }
+            temp += i;
+            System.out.println(i);
+            System.out.println(temp);
+        }
+        System.out.println(sum);
+    }
+}

@@ -4,7 +4,7 @@ My name is Esen, a junior Android Developer who started at 2018 September in res
 
 This is my Project Euler solutions written in ***Java.***
 
-Purpose of this project is creating best solutions possible while keeping codes ***simple, re-usable and easy to implementation.***
+Purpose of this project is creating quality solutions while keeping codes ***simple, adaptive, re-usable and easy to implementation.***
 
 All you need to do is just execute methods with needed variables in Main.
 

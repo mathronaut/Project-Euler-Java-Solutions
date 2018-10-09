@@ -1,0 +1,29 @@
+public class Main {
+
+    public static void main(String[] args) {
+        smallestPythagorean(1000);
+    }
+
+    static long smallestPythagorean(int total) {
+        long product = 0;
+        for (double i = 1; i < total / 2; i++) { //i represents (b - c)
+            for (int a = 1; a < total / 2; a++) {
+                if (a / i == (int) a / i) { // problem wants integer valued a b c variables, so we just eliminate fractional numbers
+                    if (total == a * ((a / i) + 1)) {
+                        //what we do here is: a^2 + b^2 = c^2 --> a^2 = (b - c) + (b + c) --> a^2 / i = (b + c)
+                        //total = (a + b + c) = a^2 / i + a = a * ((a /i) + 1)
+                        System.out.println(a);
+                        System.out.println(i);
+                        int bc = (int) (a * a / i);
+                        int b = (int) (bc - i) / 2;
+                        int c = bc - b;
+                        System.out.println("a:" + a + " b:" + b + " c:" + c);
+                        product = (long) (a * b * c);
+                        System.out.println("product of abc:" + product);
+                    }
+                }
+            }
+        }
+        return product;
+    }
+}

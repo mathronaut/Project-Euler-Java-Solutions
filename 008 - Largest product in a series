@@ -14,7 +14,7 @@ public class Main {
                 if (product > largestP) largestP = product;
             }
         }
-        System.out.println(largestP);
+        System.out.println("Largest product in series is: " + largestP);
         return largestP;
     }
 }

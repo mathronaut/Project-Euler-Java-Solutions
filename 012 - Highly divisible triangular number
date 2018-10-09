@@ -1,0 +1,43 @@
+public class Main {
+
+    public static void main(String[] args) {
+        divisorCounter(500);
+    }
+
+    public static int divisorCounter(int limit) {
+        for (int i = 1; ; i++) {
+            int divisors = 1;
+            long temp = triangleNumber(i);
+            for (int j = 2; temp > 1; j++) {
+                int count = 0;
+                if (isPrime(j)) {
+                    while (temp % j == 0) {
+                        temp /= j;
+                        count++;
+                    }
+                    divisors *= (count + 1);
+                }
+            }
+            if (divisors >= limit) {
+                System.out.println("The first triangle numbers has over " + limit + " divisor is: " + i + "\n" +
+                                    "And it's triangle value is : " + triangleNumber(i));
+                return i;
+            }
+        }
+    }
+
+    public static long triangleNumber(int num) {
+        return num * (num + 1) / 2;
+    }
+
+    public static boolean isPrime(int number) {
+        if (number == 2) return true;
+        if (number % 2 == 0) return false;
+        for (int i = 3; i * i <= number; i += 2) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}

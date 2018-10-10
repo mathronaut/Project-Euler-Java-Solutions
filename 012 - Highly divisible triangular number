@@ -15,7 +15,7 @@ public class Main {
                         temp /= j;
                         count++;
                     }
-                    divisors *= (count + 1);
+                    divisors *= (++count);
                 }
             }
             if (divisors >= limit) {

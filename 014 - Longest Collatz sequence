@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+
+public class Main {
+
+    private static ArrayList<Long> collatzSequence = new ArrayList<>();
+
+    public static void main(String[] args) {
+        collatz(1_000_000);
+    }
+
+    public static void collatz(int upperLimit) {
+        firstCollatzS(upperLimit - 1);
+        System.out.println(collatzSequence);
+        out:
+        for (int i = upperLimit - 1; i > upperLimit / 3; i--) {
+            ArrayList<Long> tempList = new ArrayList<>();
+            long temp = i;
+            tempList.add((long) i);
+            while (temp > 1) {
+                if (temp % 2 != 0) {
+                    temp = temp * 3 + 1;
+                    tempList.add(temp);
+                }
+                if (temp % 2 == 0) {
+                    temp /= 2;
+                    tempList.add(temp);
+                }
+                if (collatzSequence.contains(temp)) {
+                    if (collatzSequence.indexOf(temp) > tempList.indexOf(temp)) continue out;
+                }
+            }
+            if (tempList.size() > collatzSequence.size()) {
+                collatzSequence = tempList;
+            }
+        }
+        System.out.println(collatzSequence);
+    }
+
+    public static void firstCollatzS(long number) {
+        while (number > 1) {
+            if (number % 2 != 0) {
+                collatzSequence.add(number);
+                number = number * 3 + 1;
+            }
+            if (number % 2 == 0) {
+                collatzSequence.add(number);
+                number /= 2;
+            }
+        }
+        collatzSequence.add(1L);
+    }
+}

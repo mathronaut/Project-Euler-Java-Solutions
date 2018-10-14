@@ -223,6 +223,6 @@ public class Main {
                 break;
         }
 //        System.out.println(word);
-        return value - 2;// removing spaces, it's better put spaces for spell checking
+        return value - 2;// removing value of spaces, it's better put spaces for spell checking
     }
 }

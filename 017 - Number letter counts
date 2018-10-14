@@ -1,0 +1,228 @@
+public class Main {
+    public static void main(String[] args) {
+        numberLetterCounts(1, 1000);
+    }
+
+    private static void numberLetterCounts(int downer, int upper) {
+        System.out.println("Letter counts between " + downer + "-" + upper + " is " + letterCounter(downer, upper));
+    }
+
+    private static int letterCounter(int downer, int upper) {
+        int sum = 0;
+        for (int i = downer; i <= upper; i++) {
+            int order = 0;
+            int temp = i;
+            int digit;
+            if (temp == 1000) {
+                String word = "one thousand";
+                sum += word.length() - 1;
+//                System.out.println(word);
+                continue;
+            }
+            if (temp % 100 == 0) {
+                temp /= 100;
+                sum += hundredDigits(temp) - 3;//removing value of "and"
+                continue;
+            }
+            if (temp % 100 >= 1 && temp % 100 < 20) {
+                digit = temp % 100;
+                sum += unitDigits(digit);
+                temp /= 100;
+                if (temp > 0) {
+                    sum += hundredDigits(temp);
+                }
+            } else {
+                while (temp > 0) {
+                    digit = temp % 10;
+                    temp /= 10;
+                    if (order == 0) {
+                        sum += unitDigits(digit);
+                    }
+                    if (order == 1) {
+                        sum += tenDigits(digit);
+                    }
+                    if (order == 2) {
+                        sum += hundredDigits(digit);
+                    }
+                    order++;
+                }
+            }
+        }
+        return sum;
+    }
+
+    private static int unitDigits(int number) {
+        String word;
+        int value = 0;
+        switch (number) {
+            case 0:
+                return 0;
+            case 1:
+                word = "one";
+                value += word.length();
+                break;
+            case 2:
+                word = "two";
+                value += word.length();
+                break;
+            case 3:
+                word = "three";
+                value += word.length();
+                break;
+            case 4:
+                word = "four";
+                value += word.length();
+                break;
+            case 5:
+                word = "five";
+                value += word.length();
+                break;
+            case 6:
+                word = "six";
+                value += word.length();
+                break;
+            case 7:
+                word = "seven";
+                value += word.length();
+                break;
+            case 8:
+                word = "eight";
+                value += word.length();
+                break;
+            case 9:
+                word = "nine";
+                value += word.length();
+                break;
+            case 10:
+                word = "ten";
+                value += word.length();
+                break;
+            case 11:
+                word = "eleven";
+                value += word.length();
+                break;
+            case 12:
+                word = "twelve";
+                value += word.length();
+                break;
+            case 13:
+                word = "thirteen";
+                value += word.length();
+                break;
+            case 14:
+                word = "fourteen";
+                value += word.length();
+                break;
+            case 15:
+                word = "fifteen";
+                value += word.length();
+                break;
+            case 16:
+                word = "sixteen";
+                value += word.length();
+                break;
+            case 17:
+                word = "seventeen";
+                value += word.length();
+                break;
+            case 18:
+                word = "eighteen";
+                value += word.length();
+                break;
+            case 19:
+                word = "nineteen";
+                value += word.length();
+                break;
+        }
+//        System.out.println(word);
+        return value;
+    }
+
+    private static int tenDigits(int number) {
+        String word;
+        int value = 0;
+        switch (number) {
+            case 0:
+                return 0;
+            case 2:
+                word = "twenty";
+                value += word.length();
+                break;
+            case 3:
+                word = "thirty";
+                value += word.length();
+                break;
+            case 4:
+                word = "forty";
+                value += word.length();
+                break;
+            case 5:
+                word = "fifty";
+                value += word.length();
+                break;
+            case 6:
+                word = "sixty";
+                value += word.length();
+                break;
+            case 7:
+                word = "seventy";
+                value += word.length();
+                break;
+            case 8:
+                word = "eighty";
+                value += word.length();
+                break;
+            case 9:
+                word = "ninety";
+                value += word.length();
+                break;
+        }
+//        System.out.println(word);
+        return value;
+    }
+
+    private static int hundredDigits(int number) {
+        String word;
+        int value = 0;
+        switch (number) {
+            case 1:
+                word = "one hundred and";
+                value += word.length();
+                break;
+            case 2:
+                word = "two hundred and";
+                value += word.length();
+                break;
+            case 3:
+                word = "three hundred and";
+                value += word.length();
+                break;
+            case 4:
+                word = "four hundred and";
+                value += word.length();
+                break;
+            case 5:
+                word = "five hundred and";
+                value += word.length();
+                break;
+            case 6:
+                word = "six hundred and";
+                value += word.length();
+                break;
+            case 7:
+                word = "seven hundred and";
+                value += word.length();
+                break;
+            case 8:
+                word = "eight hundred and";
+                value += word.length();
+                break;
+            case 9:
+                word = "nine hundred and";
+                value += word.length();
+                break;
+        }
+//        System.out.println(word);
+        return value - 2;// removing spaces, it's better put spaces for spell checking
+    }
+}

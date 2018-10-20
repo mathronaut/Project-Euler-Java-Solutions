@@ -1,0 +1,147 @@
+public class Main {
+
+    private static final Date start = new Date(1, Month.JAN, 1900);
+
+    public static void main(String[] args) {
+        countFirstDays(new Date(1, Month.JAN, 1901), new Date(31, Month.DEC, 2000), Day.SUNDAY);
+    }
+
+    private static int countFirstDays(Date firstDate, Date secondDate, Day day) {
+        int count = 0;
+        int diff = calcDay(firstDate);
+        if (firstDate.getDay() == 1) {
+            if (weekCycle(diff) == day) {
+                count++;
+            }
+        }
+        int firstYear = firstDate.getYear();
+        int secondYear = secondDate.getYear();
+        while (firstYear <= secondYear) {
+            for (Month month : Month.values()) {
+                diff += monthValue(month, firstYear);
+                if (weekCycle(diff) == day) {
+                    count++;
+                }
+            }
+            firstYear++;
+        }
+        for (Month month : Month.values()) {
+            if (month == secondDate.getMonth()) {
+                break;
+            }
+            diff += monthValue(month, firstYear);
+            if (weekCycle(diff) == day) {
+                count++;
+            }
+        }
+        System.out.println("Count of first day of month " + day.toString() + "s between " + firstDate.getDay() + " "
+                + firstDate.getMonth().toString() + " " + firstDate.getYear() + " - " + secondDate.getDay()
+                + " " + secondDate.getMonth().toString() + " " + secondDate.getYear() + " is " + count);
+        return count;
+    }
+
+    private static int calcDay(Date date) {
+        int days = 0;
+        int dateYear = date.getYear();
+        int startYear = start.getYear();
+        while (startYear < dateYear) {
+            days += 365;
+            if (isLeap(startYear)) {
+                days += 366;
+            }
+            startYear++;
+        }
+        for (Month month : Month.values()) {
+            if (month == date.getMonth()) {
+                break;
+            }
+            days += monthValue(month, startYear);
+        }
+        return days;
+    }
+
+    private static boolean isLeap(int year) {
+        return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+    }
+
+    private static Day weekCycle(int days) {
+        switch (days % 7) {
+            case 0:
+                return Day.MONDAY;
+            case 1:
+                return Day.TUESDAY;
+            case 2:
+                return Day.WEDNESDAY;
+            case 3:
+                return Day.THURSDAY;
+            case 4:
+                return Day.FRIDAY;
+            case 5:
+                return Day.SATURDAY;
+            case 6:
+                return Day.SUNDAY;
+            default:
+                return null;
+        }
+    }
+
+    private static int monthValue(Month month, int year) {
+        switch (month) {
+            case JAN:
+                return 31;
+            case FEB:
+                if (isLeap(year)) return 29;
+                return 28;
+            case MAR:
+                return 31;
+            case APR:
+                return 30;
+            case MAY:
+                return 31;
+            case JUN:
+                return 30;
+            case JUL:
+                return 31;
+            case AUG:
+                return 30;
+            case SEP:
+                return 31;
+            case OCT:
+                return 30;
+            case NOV:
+                return 31;
+            case DEC:
+                return 31;
+            default:
+                return -1;
+        }
+    }
+}
+
+enum Day {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
+
+enum Month {JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC,}
+
+class Date {
+    private int day;
+    private Month month;
+    private int year;
+
+    Date(int day, Month month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public Month getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+}

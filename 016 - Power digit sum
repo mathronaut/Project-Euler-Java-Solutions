@@ -1,28 +1,24 @@
-//import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         powerDigitSum(2, 1000);
     }
 
     private static int[] powerArray(int number, int exponent) {
-        int totalDigits = digitsCalc(number, exponent);
+        int totalDigits = digitsCalc(number, exponent), digits = 0;
         int[] array = new int[totalDigits];
         array[0] = 1;
-        int digits = 1;
         for (int i = 0; i < exponent; i++) {
-            for (int j = digits - 1; j >= 0; j--) {
+            for (int j = digits; j >= 0; j--) {
                 array[j] *= number;
                 if (array[j] >= 10) {
                     array[j] %= 10;
-                    array[j + 1] += 1;
-                    if (j == digits - 1) {
+                    array[j + 1]++;
+                    if (j == digits) {
                         digits++;
                     }
                 }
             }
         }
-//        System.out.println(number + "^" + exponent + ": " + Arrays.toString(array));
         return array;
     }
 

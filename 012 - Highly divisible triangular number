@@ -19,7 +19,7 @@ public class Main {
                 }
             }
             if (divisors >= limit) {
-                System.out.println("The first triangle numbers has over " + limit + " divisor is: " + i + "\n" +
+                System.out.println("The first triangle numbers has over " + limit + " divisors is: " + i + "\n" +
                                     "And it's triangle value is : " + triangleNumber(i));
                 return i;
             }
@@ -27,7 +27,7 @@ public class Main {
     }
 
     public static long triangleNumber(int num) {
-        return num * (num + 1) / 2;
+        return num * (++num) / 2;
     }
 
     public static boolean isPrime(int number) {

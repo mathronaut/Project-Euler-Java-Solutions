@@ -4,10 +4,12 @@ public class Main {
         largestPalindrome(3);
     }
 
-    public static void largestPalindrome(int digits){
+    private static void largestPalindrome(int digits){
         int number = 0;
-        for (int i = (int) (Math.pow(10, digits) - 1); i > (int) (Math.pow(10, digits - 1)); i--) {
-            for (int j = (int) (Math.pow(10, digits) - 1); j > (int) (Math.pow(10, digits - 1)); j--) {
+        int greater = (int) (Math.pow(10, digits) - 1);
+        int lesser = (int) (Math.pow(10, digits - 1));
+        for (int i = greater; i >= lesser; i--) {
+            for (int j = greater; j >= lesser; j--) {
                 if (i * j > number && isPalindrome(i * j)) {
                     number = i * j;
                 }
@@ -16,7 +18,7 @@ public class Main {
         System.out.println("Largest Palindrome created from " + digits + "-digit number is " + number);
     }
 
-    public static boolean isPalindrome (int number){
+    private static boolean isPalindrome (int number){
         int reverse = 0;
         int temp = number;
         while (temp > 0) {
@@ -25,9 +27,6 @@ public class Main {
             temp /= 10;
             reverse += digit;
         }
-        if (reverse == number){
-            return true;
-        }
-        return false;
+        return reverse == number;
     }
 }

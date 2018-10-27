@@ -1,0 +1,34 @@
+public class Main {
+    public static void main(String[] args) {
+        amicableNumbers(10_000);
+    }
+
+    private static void amicableNumbers(int limit) {
+        System.out.println("Sum of amicable numbers under " + limit + " is " + sumAmicable(limit));
+    }
+
+    private static int sumAmicable(int limit) {
+        int sum = 0;
+        for (int i = 1; i < limit; i++) {
+            if (isAmicable(i)) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+
+    private static boolean isAmicable(int number) {
+        int amicable = sumDivisors(number);
+        return number == sumDivisors(amicable) && number != sumDivisors(number);
+    }
+
+    private static int sumDivisors(int number) {
+        int sum = 0;
+        for (int i = 1; i < number; i++) {
+            if (number % i == 0) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+}

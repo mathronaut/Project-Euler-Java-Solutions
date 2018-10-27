@@ -1,0 +1,50 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        factorialDigitSum(100);
+    }
+
+    private static void factorialDigitSum(int factorial) {
+        int[] array = factArray(factorial);
+        System.out.println("Sum of " + factorial + " factorials digits is " + digitSum(array) + '\n'
+                + "Array is " + Arrays.toString(array));
+    }
+
+    private static int digitSum(int[] array) {
+        int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+        return sum;
+    }
+
+    private static int[] factArray(int factorial) {
+        int digits = digitsCalculator(factorial);
+        int[] array = new int[digits];
+        array[--digits] = 1;
+        int order = 0;
+        for (int i = 1; i <= factorial; i++) {
+            int carry = 0;
+            for (int j = digits; j >= digits - order; j--) {
+                int temp = array[j] * i + carry;
+                array[j] = temp % 10;
+                carry = temp / 10;
+                if (temp > 9) {
+                    if (j == digits - order) {
+                        order++; //For minimum multiply process using "order" variable
+                    }
+                }
+            }
+        }
+        return array;
+    }
+    
+    private static int digitsCalculator(int factorial) {
+        double digits = 0;
+        for (int i = 1; i <= factorial; i++) {
+            digits += Math.log10(i);
+        }
+        return (int) ++digits;
+    }
+}

@@ -45,9 +45,10 @@ public class Main {
         int dateYear = date.getYear();
         int startYear = start.getYear();
         while (startYear < dateYear) {
-            days += 365;
             if (isLeap(startYear)) {
                 days += 366;
+            } else {
+                days += 365;
             }
             startYear++;
         }

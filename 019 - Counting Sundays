@@ -3,20 +3,21 @@ public class Main {
     private static final Date start = new Date(1, Month.JAN, 1900);
 
     public static void main(String[] args) {
-        countFirstDays(new Date(1, Month.JAN, 1901), new Date(31, Month.DEC, 2000), Day.SUNDAY);
+        countFirstDays(1, Month.JAN, 1901, Day.SUNDAY, 31, Month.DEC, 2000);
     }
 
-    private static int countFirstDays(Date firstDate, Date secondDate, Day day) {
+    private static int countFirstDays(int firstDay, Month firstMonth, int firstYear,
+                                      Day day, int secondDay, Month secondMonth, int secondYear) {
+        Date firstDate = new Date(firstDay, firstMonth, firstYear);
+        Date secondDate = new Date(secondDay, secondMonth, secondYear);
         int count = 0;
         int diff = calcDay(firstDate);
-        if (firstDate.getDay() == 1) {
+        if (firstDate.getDay() == 1) {//Checking if first day is month's specified first day or not
             if (weekCycle(diff) == day) {
                 count++;
             }
         }
-        int firstYear = firstDate.getYear();
-        int secondYear = secondDate.getYear();
-        while (firstYear <= secondYear) {
+        while (firstYear <= secondYear) {//Calculates days between years
             for (Month month : Month.values()) {
                 diff += monthValue(month, firstYear);
                 if (weekCycle(diff) == day) {
@@ -25,7 +26,7 @@ public class Main {
             }
             firstYear++;
         }
-        for (Month month : Month.values()) {
+        for (Month month : Month.values()) {//Calculates days within last year without exceeding month
             if (month == secondDate.getMonth()) {
                 break;
             }

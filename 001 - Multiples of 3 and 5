@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        sumMultipleNumbers(100, 3, 5);
+        sumMultipleNumbers(1000, 3, 5);
     }
 
     public static int sumMultipleNumbers(int limit, int multiple1, int multiple2) {

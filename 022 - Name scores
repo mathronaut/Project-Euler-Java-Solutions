@@ -1,0 +1,61 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        nameScores("p022_names.txt");
+    }
+
+    private static int nameScores(String fileName) {
+        int nameScores = totalValue(Sorting(listNames(fileName)));
+        System.out.println(nameScores);
+        return nameScores;
+    }
+
+    private static ArrayList<String> listNames(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            return new ArrayList<>(Arrays.asList(reader.readLine().split(",")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }return null;
+    }
+
+    private static ArrayList<String> Sorting(ArrayList<String> list) {
+        String temp;
+        out: for (int i = list.size() - 1; i >= 0; i--) {
+            for (int j = i; j < list.size() - 1; j++) {
+                if (list.get(j).compareTo(list.get(j + 1)) > 0) {
+                    temp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, temp);
+                } else {
+                    continue out;
+                }
+            }
+        }
+        return list;
+    }
+
+    private static int nameValue(String name, int index) {
+        char[] chars = name.toCharArray();
+        int value = 0;
+        for (char c : chars) {
+            if (Character.isUpperCase(c)) {
+                value += c - ('A' - 1);
+            }
+        }
+        return value * (index + 1);
+    }
+
+    private static int totalValue(ArrayList<String> strings) {
+        int sum = 0;
+        for (String s : strings) {
+            int i = strings.indexOf(s);
+            sum += nameValue(s, i);
+        }
+        return sum;
+    }
+}

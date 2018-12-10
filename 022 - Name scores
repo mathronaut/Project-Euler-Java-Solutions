@@ -42,10 +42,8 @@ public class Main {
     private static int nameValue(String name, int index) {
         char[] chars = name.toCharArray();
         int value = 0;
-        for (char c : chars) {
-            if (Character.isUpperCase(c)) {
-                value += c - ('A' - 1);
-            }
+        for (int i = 1; i < chars.length - 1; i++) {
+                value += chars[i] - ('A' - 1);
         }
         return value * (index + 1);
     }

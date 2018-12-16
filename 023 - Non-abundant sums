@@ -1,0 +1,55 @@
+public class Main {
+    private static final int limit = 28123;
+    private static final boolean[] abundants = new boolean[limit + 1];
+
+    public static void main(String[] args) {
+        nonAbundantSums(abundants);
+    }
+
+    private static void nonAbundantSums(boolean[] abundants) {
+        System.out.println(sumOfNon(abundantList(abundants)));
+    }
+
+    private static int sumOfFactors(int number) {
+        int sqrt = (int) Math.sqrt(number);
+        int sum = 1;
+
+        if (number == sqrt * sqrt) {
+            sum += sqrt--;
+        }
+        for (int i = 2; i <= sqrt; i++) {
+            if (number % i == 0) {
+                sum += i + (number / i);
+            }
+        }
+        return sum;
+    }
+
+    private static boolean[] abundantList(boolean[] abundants) {
+        abundants[12] = true; //We know 12 is already abundant
+        for (int i = 12; i <= limit; i++) {
+            if (sumOfFactors(i) > i) {
+                abundants[i] = true;
+//                System.out.println(i + " is abundant");
+            }
+        }
+        return abundants;
+    }
+
+    private static int sumOfNon(boolean[] abundants) {
+        int sum = 1;
+        //We know it's already cannot be written as sum of two non-abundants
+        //And we start from '2'
+        out:
+        for (int i = 2; i < limit; i++) {
+            for (int j = 1; j < i; j++) {
+                if (abundants[j] && abundants[i - j]) {
+//                    System.out.println(i + " is can be written as " + j + " + " + (i - j));
+                    continue out;
+                }
+            }
+            sum += i;
+        }
+        return sum;
+    }
+}

@@ -38,8 +38,6 @@ public class Main {
 
     private static int sumOfNon(boolean[] abundants) {
         int sum = 1;
-        //We know it's already cannot be written as sum of two non-abundants
-        //And we start from '2'
         out:
         for (int i = 2; i < limit; i++) {
             for (int j = 1; j < i; j++) {

@@ -3,11 +3,11 @@ public class Main {
     private static final boolean[] abundants = new boolean[limit + 1];
 
     public static void main(String[] args) {
-        nonAbundantSums(abundants);
+        nonAbundantSums();
     }
 
-    private static void nonAbundantSums(boolean[] abundants) {
-        System.out.println(sumOfNons(abundantList(abundants)));
+    private static void nonAbundantSums() {
+        System.out.println(nonAbundantSums(abundantLister()));
     }
 
     private static int sumOfFactors(int number) {
@@ -25,7 +25,7 @@ public class Main {
         return sum;
     }
 
-    private static boolean[] abundantList(boolean[] abundants) {
+    private static boolean[] abundantLister() {
         abundants[12] = true; //We know 12 is already abundant
         for (int i = 12; i <= limit; i++) {
             if (sumOfFactors(i) > i) {
@@ -36,9 +36,9 @@ public class Main {
         return abundants;
     }
 
-    private static int sumOfNons(boolean[] abundants) {
+    private static int nonAbundantSums(boolean[] abundants) {
         int sum = (23 * 24) / 2;
-        //Smallest is 12, so
+        //Smallest is 12, so i'm adding all numbers until 24(exc) and starting from 25 & 12
         out:
         for (int i = 25; i < limit; i++) {
             for (int j = 12; j < i; j++) {

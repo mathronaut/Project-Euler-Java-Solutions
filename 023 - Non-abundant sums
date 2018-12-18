@@ -7,7 +7,7 @@ public class Main {
     }
 
     private static void nonAbundantSums(boolean[] abundants) {
-        System.out.println(sumOfNon(abundantList(abundants)));
+        System.out.println(sumOfNons(abundantList(abundants)));
     }
 
     private static int sumOfFactors(int number) {
@@ -36,11 +36,12 @@ public class Main {
         return abundants;
     }
 
-    private static int sumOfNon(boolean[] abundants) {
-        int sum = 1;
+    private static int sumOfNons(boolean[] abundants) {
+        int sum = (23 * 24) / 2;
+        //Smallest is 12, so
         out:
-        for (int i = 2; i < limit; i++) {
-            for (int j = 1; j < i; j++) {
+        for (int i = 25; i < limit; i++) {
+            for (int j = 12; j < i; j++) {
                 if (abundants[j] && abundants[i - j]) {
 //                    System.out.println(i + " is can be written as " + j + " + " + (i - j));
                     continue out;

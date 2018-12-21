@@ -27,7 +27,7 @@ public class Main {
 
     private static boolean[] abundantLister() {
         abundants[12] = true; //We know 12 is already abundant
-        for (int i = 12; i <= limit; i++) {
+        for (int i = 13; i <= limit; i++) {
             if (sumOfFactors(i) > i) {
                 abundants[i] = true;
 //                System.out.println(i + " is abundant");

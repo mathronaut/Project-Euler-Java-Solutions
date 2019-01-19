@@ -1,0 +1,104 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9,};
+        lexicographicPermutations(array, 1_000_000);
+    }
+
+    private static void lexicographicPermutations(int[] array, int count) {
+        if (arrayCheck(array)) {
+            sorting(array);
+            array = lexicography(array, count);
+            double value = value(array);
+            System.out.println(count +
+                    "th lexicographic permutation of your array is:");
+            System.out.printf("%.0f\n", value);
+        } else {
+            System.out.println("All numbers must be one digit");
+        }
+    }
+
+    private static int[] lexicography(int[] array, int count) {
+        int[] sortedArray = sorting(array);
+        int[] lexicographic = new int[sortedArray.length];
+        List<Integer> numberHolder = new ArrayList<>();
+        for (int i : sortedArray) {
+            numberHolder.add(i);
+        }
+        int digit = 0, levelUp;
+        while (digit < array.length - 1) {
+            int rank = 0;
+            /*levelUp means, a required count value for digit's rank up
+            think about our first digit, every 9! counts increments it's rank*/
+            levelUp = factorial(array.length - digit - 1);
+            while (count - levelUp > 0) {
+                rank++;
+                count -= levelUp;
+            }
+//            System.out.println(count + " is count");
+            lexicographic[digit] = numberHolder.get(rank);
+//            System.out.println(lexicographic[digit] + " is new digit");
+            numberHolder.remove(rank);
+            /*we choose our digit with it's rank among the leftovers
+            then remove it, because we won't want to assign same number on and on*/
+            digit++;
+        }
+        if (!numberHolder.isEmpty()) {
+            for (int i : numberHolder) {
+                lexicographic[digit] = i;
+                System.out.println(i + "added additionally");
+                digit++;
+            }
+        }
+        return lexicographic;
+    }
+
+    private static int factorial(int number) {
+        int num = 1;
+        for (int i = number; i > 1; i--) {
+            num *= i;
+        }
+        return num;
+    }
+
+    private static int[] sorting(int[] array) {
+        int temp;
+        out:
+        for (int i = array.length - 2; i >= 0; i--) {
+            for (int j = i + 1; j < array.length - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                } else {
+                    continue out;
+                }
+            }
+        }
+        /*or simply better use java library
+        I prefer manual solutions over libraries in this project
+        Arrays.sort(array);*/
+        return array;
+    }
+
+    private static double /*Optional*/ value(int[] array) {
+        double num = 0;
+        for (int i = 0; i <= array.length - 2; i++) {
+            num += array[i];
+            num *= 10;
+        }
+        num += array[array.length - 1];
+        return num;
+    }
+
+    private static boolean /*Optional*/ arrayCheck(int[] array) {
+        for (int i : array) {
+            if (i > 9) {
+                return false;
+            }
+        }
+        return true;
+    }
+}

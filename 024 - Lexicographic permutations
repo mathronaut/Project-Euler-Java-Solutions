@@ -41,8 +41,8 @@ public class Main {
             lexicographic[digit] = numberHolder.get(rank);
 //            System.out.println(lexicographic[digit] + " is new digit");
             numberHolder.remove(rank);
-            /*we choose our digit with it's rank among the leftovers
-            then remove it, because we won't want to assign same number on and on*/
+            /*we choose our digit with it's rank among the leftovers then remove it
+            because we won't want to assign same number again and again*/
             digit++;
         }
         if (!numberHolder.isEmpty()) {

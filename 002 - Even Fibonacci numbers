@@ -6,7 +6,6 @@ public class Main {
     public static void sumEvenFibo(int limit) {
         int sum = 0, temp = 1;
         for (int i = 1; temp < limit && i < limit; i += temp) {
-            //instead of creating three variable, i just create two variable and getting same output
             if (i % 2 == 0) {
                 sum += i;
             }

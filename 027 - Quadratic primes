@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        quadraticPrimes(1000, 1000);
+    }
+
+    private static int iterator(int a, int b) {
+        int count = 0;
+        int product = 0;
+        //b number must be prime, because x = 0 results in prime
+        ArrayList<Integer> primeList = primeLister(b);
+        //a number must be odd, because result will be odd
+        if (a % 2 == 0) a--;
+        for (int i = -a; i <= a; i += 2) {
+            for (int j : primeList) {
+                int tempCount = 0;
+                int x = 0;
+                for (; ; x++) {
+                    int result = (int) Math.pow(x, 2) + i * x + j;
+                    if (isPrime(result)) {
+                        tempCount++;
+                    } else {
+                        break;
+                    }
+                }
+                if (tempCount > count) {
+                    count = tempCount;
+                    product = i * j;
+                    System.out.println("Count = " + count + '\n' +
+                            "a = " + i + ", b = " + j + '\n' +
+                            "Product = " + product + '\n');
+                }
+            }
+        }
+        return product;
+    }
+
+    private static ArrayList<Integer> primeLister(int number) {
+        ArrayList<Integer> primes = new ArrayList<>();
+        primes.add(2);
+        for (int i = 3; i <= number; i += 2) {
+            if (isPrime(i)) primes.add(i);
+        }
+        System.out.println(primes);
+        return primes;
+    }
+
+    private static boolean isPrime(int number) {
+        if ((number > 2 && number % 2 == 0) || number < 2) return false;
+        for (int i = 3; i * i <= number; i++) {
+            if (number % i == 0) return false;
+        }
+        return true;
+    }
+
+    private static void quadraticPrimes(int a, int b) {
+        System.out.println(iterator(a, b));
+    }
+}

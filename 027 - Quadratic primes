@@ -17,7 +17,7 @@ public class Main {
                 int tempCount = 0;
                 int x = 0;
                 for (; ; x++) {
-                    int result = (int) Math.pow(x, 2) + i * x + j;
+                    int result = x * x + i * x + j;
                     if (isPrime(result)) {
                         tempCount++;
                     } else {

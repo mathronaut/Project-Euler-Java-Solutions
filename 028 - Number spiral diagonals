@@ -1,0 +1,19 @@
+public class Main {
+    public static void main(String[] args) {
+        numberSpiralDiagonals(1001);
+    }
+
+    private static int spiralDiagonal(int edge) {
+        // to up-left, 4n^2 + 2n + 1
+        // to up-right, 4n^2 + 4n + 1
+        // to down-left, 4n^2 + 1
+        // to down-right, 4n^2 - 2n + 1
+        // total of all corners from combinatorial equation => 1 + 16/3n^3 + 10n^2 + 26n/3
+        int n = (edge - 1) / 2; // diagonal
+        return 1 + 2 * n * (8 * n * n + 15 * n + 13) / 3;
+    }
+
+    private static void numberSpiralDiagonals(int number) {
+        System.out.println(spiralDiagonal(number));
+    }
+}

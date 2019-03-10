@@ -1,10 +1,13 @@
 public class Main {
+    private static int a;
+    private static int b;
+
     public static void main(String[] args) {
         distinctPowers(2, 100);
     }
 
-    private static int iterator(int a, int b) {
-        int length = b - a + 1, exp = maxExponent(a, b), distincts = length * length;
+    private static int iterator() {
+        int length = b - a + 1, exp = maxExponent(), distincts = length * length;
         for (float i = exp; i > 1; i--) {
             for (int j = a; Math.pow(j, i) <= b; j++) {
                 distincts -= (int) (length / i);
@@ -14,7 +17,7 @@ public class Main {
         return distincts;
     }
 
-    private static int maxExponent(int a, int b) {
+    private static int maxExponent() {
         int exp = 0;
         for (int i = 2; i <= b; i *= a) {
             exp++;
@@ -22,7 +25,9 @@ public class Main {
         return exp;
     }
 
-    private static void distinctPowers(int a, int b) {
-        System.out.println(iterator(a, b));
+    private static void distinctPowers(int numA, int numB) {
+        a = numA;
+        b = numB;
+        System.out.println(iterator());
     }
 }

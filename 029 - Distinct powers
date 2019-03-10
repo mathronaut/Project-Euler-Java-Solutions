@@ -1,0 +1,28 @@
+public class Main {
+    public static void main(String[] args) {
+        distinctPowers(2, 100);
+    }
+
+    private static int iterator(int a, int b) {
+        int length = b - a + 1, exp = maxExponent(a, b), distincts = length * length;
+        for (float i = exp; i > 1; i--) {
+            for (int j = a; Math.pow(j, i) <= b; j++) {
+                distincts -= (int) (length / i);
+            }
+            distincts++;
+        }
+        return distincts;
+    }
+
+    private static int maxExponent(int a, int b) {
+        int exp = 0;
+        for (int i = 2; i <= b; i *= a) {
+            exp++;
+        }
+        return exp;
+    }
+
+    private static void distinctPowers(int a, int b) {
+        System.out.println(iterator(a, b));
+    }
+}
